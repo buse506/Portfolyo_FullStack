@@ -1,0 +1,30 @@
+
+
+body {
+
+    background-color: darkslategrey;
+    
+}
+
+
+h1,h2,p,li  {
+
+       color: aliceblue;
+}
+
+img {
+
+    height: 200px;
+    
+}
+
+header {
+
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+a {
+    color: aquamarine;
+}
