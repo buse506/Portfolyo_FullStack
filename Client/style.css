@@ -2,8 +2,8 @@
 
 body {
 
-    background-color: darkslategrey;
-    
+    background-color: rgb(162, 174, 165);
+    margin: 10px;
 }
 
 
@@ -12,19 +12,126 @@ h1,h2,p,li  {
        color: aliceblue;
 }
 
-img {
+/* --- SEÇENEK 1: KAR KÜRESİ EFEKTİ --- */
 
-    height: 200px;
+/* Resmi tutan ana kutu - Ortalar ve arka plan verir */
+.christmas-photo-container {
+    display: flex;
+    justify-content: center; /* Yatayda ortala */
+    padding: 50px 0; /* Üstten alttan boşluk bırak */
+    /* İsteğe bağlı: Arka plana hafif bir kar tanesi deseni eklenebilir */
     
 }
 
-header {
-
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
+/* Resmin kendisi */
+.profile-pic {
+    width: 250px;  /* Resim boyutu */
+    height: 250px; /* Kare olması önemli */
+    object-fit: cover; /* Resim sıkışmasın */
+    
+    /* KAR KÜRESİ SİHRİ BURADA */
+    border-radius: 50%; /* Tam yuvarlak yap */
+    border: 8px solid rgba(255, 255, 255, 0.8); /* Yarı saydam beyaz kalın çerçeve (Buz gibi) */
+    /* 3 katmanlı gölge ile parlama efekti */
+    box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.6), /* İç parlama */
+        0 0 40px rgba(135, 206, 235, 0.4), /* Dış mavi buz parlaması */
+        0 10px 20px rgba(0,0,0,0.3); /* Altına hafif gölge (derinlik için) */
+    
+    transition: transform 0.3s; /* Üzerine gelince yumuşak hareket */
 }
 
+/* Mouse ile üzerine gelince hafifçe büyüsün */
+.profile-pic:hover {
+    transform: scale(1.05);
+}
+
+/* Navbar Genel Düzeni */
+.navbar {
+    border: 8px solid rgba(255, 255, 255, 0.8);
+    background-color: #2c3e50; /* Mevcut koyu yeşil arka plan renginiz */
+    padding: 30px 30px;
+    position: relative; /* Butonu konumlandırmak için gerekli */
+    display: flex;
+    justify-content: flex-end; /* Butonu sağa yasla */
+    align-items: center;
+}
+
+/* --- YILBAŞI BUTONU STİLLERİ --- */
+.menu-toggle {
+    cursor: pointer;
+    z-index: 1001; /* Menünün üzerinde kalsın */
+    transition: transform 0.3s ease;
+}
+
+/* Butona gelince hafifçe dönsün ve parlasın */
+/* ESKİSİ: transform: rotate(45deg);  <-- Bunu sil */
+
+/* YENİSİ: Hafifçe büyüsün ve parlasın */
+.menu-toggle:hover {
+    transform: scale(1.1); /* %10 büyür */
+}
+
+/* İstersen ağacın içini yeşil yapabiliriz */
+.menu-toggle svg {
+    /* stroke: #2ecc71;  <-- Eğer çizgileri yeşil olsun istersen bunu aç */
+    filter: drop-shadow(0 0 5px #fff); /* Beyaz parlama */
+}
+
+/* --- MENÜ LİNKLERİ STİLLERİ --- */
+.menu-links {
+    display: none; /* Varsayılan olarak GİZLE */
+    position: absolute;
+    top: 100%; /* Navbar'ın hemen altında başla */
+    right: 0;
+    background-color: #34495e; /* Navbar'dan biraz daha açık bir ton */
+    width: 250px; /* Açılır menünün genişliği */
+    flex-direction: column; /* Linkleri alt alta diz */
+    padding: 20px;
+    border-radius: 0 0 10px 10px; /* Alt köşeleri yuvarla */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    list-style: none; /* Noktaları kaldır */
+    margin: 0;
+    z-index: 1000;
+}
+
+/* MENÜ AÇIKKEN UYGULANACAK STİL (JavaScript ile eklenecek) */
+.menu-links.active {
+    display: flex; /* GÖRÜNÜR YAP */
+}
+
+/* Linklerin Görünümü */
+.menu-links li {
+    margin-bottom: 15px;
+    text-align: center; /* Linkleri ortala */
+}
+
+.menu-links li:last-child {
+    margin-bottom: 0;
+}
+
+.menu-links a {
+    color: #1abc9c; /* Resimdeki açık yeşil link rengi */
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    display: block; /* Tıklama alanını genişlet */
+    transition: color 0.3s;
+}
+
+.menu-links a:hover {
+    color: #0b6c32; /* Üzerine gelince sarı olsun */
+}
 a {
-    color: aquamarine;
+    
+    padding: 10px;
+}
+
+.textandimage{
+
+    display: flex;             /* Esnek kutu modelini aç */
+    flex-direction: column;
+    align-items: center;       /* Yatayda tam ortala */
+    justify-content: center;   /* Dikeyde ortala */
+    text-align: center;
 }
