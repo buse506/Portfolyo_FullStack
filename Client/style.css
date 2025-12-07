@@ -49,12 +49,18 @@ h1,h2,p,li  {
 /* Navbar Genel Düzeni */
 .navbar {
     border: 8px solid rgba(255, 255, 255, 0.8);
-    background-color: #2c3e50; /* Mevcut koyu yeşil arka plan renginiz */
-    padding: 30px 30px;
-    position: relative; /* Butonu konumlandırmak için gerekli */
+    background-color: #2c3e50;
+    padding: 15px 30px; /* Yüksekliği biraz azalttım, çok yer kaplamasın */
+    
+    /* Konumlandırma Ayarları */
+    position: relative;
     display: flex;
-    justify-content: flex-end; /* Butonu sağa yasla */
+    justify-content: flex-end; /* Butonu en sağa yasla */
     align-items: center;
+    
+    /* Taşma Önlemleri */
+    overflow-x: hidden; /* Dışarı taşanları gizle */
+    box-sizing: border-box; /* Padding ekleyince kutu şişmesin (Çok Önemli!) */
 }
 
 /* --- YILBAŞI BUTONU STİLLERİ --- */
@@ -65,7 +71,7 @@ h1,h2,p,li  {
 }
 
 /* Butona gelince hafifçe dönsün ve parlasın */
-/* ESKİSİ: transform: rotate(45deg);  <-- Bunu sil */
+
 
 /* YENİSİ: Hafifçe büyüsün ve parlasın */
 .menu-toggle:hover {
@@ -78,47 +84,67 @@ h1,h2,p,li  {
     filter: drop-shadow(0 0 5px #fff); /* Beyaz parlama */
 }
 
-/* --- MENÜ LİNKLERİ STİLLERİ --- */
-.menu-links {
-    display: none; /* Varsayılan olarak GİZLE */
-    position: absolute;
-    top: 100%; /* Navbar'ın hemen altında başla */
-    right: 0;
-    background-color: #34495e; /* Navbar'dan biraz daha açık bir ton */
-    width: 250px; /* Açılır menünün genişliği */
-    flex-direction: column; /* Linkleri alt alta diz */
-    padding: 20px;
-    border-radius: 0 0 10px 10px; /* Alt köşeleri yuvarla */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    list-style: none; /* Noktaları kaldır */
-    margin: 0;
-    z-index: 1000;
+/* Navbar'ın taşmaları gizlemesi lazım ki menü kapalıyken yanda scroll bar çıkmasın */
+.navbar {
+    position: relative;
+    overflow-x: hidden; /* Yatay taşmayı engelle */
 }
 
-/* MENÜ AÇIKKEN UYGULANACAK STİL (JavaScript ile eklenecek) */
+/* MENÜ LİNKLERİ (YATAY SLIDER) */
+.menu-links {
+     
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%; /* Tüm navbar'ı kapla */
+    
+    background-color: #34495e;
+    
+    /* İçerik Düzeni */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* Linkleri yay */
+    
+    /* --- İŞTE ÇÖZÜM BURADA --- */
+    /* Sağ taraftan butonun genişliği kadar (hatta biraz fazla) boşluk bırakıyoruz */
+    /* Böylece son link butonun altına giremiyor */
+    padding-right: 90px; 
+    padding-left: 20px;
+    box-sizing: border-box; /* Padding eklediğimiz için taşmayı engeller */
+    
+    /* Animasyon Ayarları */
+    transform: translateX(100%); /* Başlangıçta sağda gizli */
+    transition: transform 0.5s ease-in-out;
+    
+    /* Diğer Ayarlar */
+    list-style: none;
+    margin: 0;
+    z-index: 100;
+}
+
+
+/* JS 'active' sınıfını ekleyince burası çalışır */
 .menu-links.active {
-    display: flex; /* GÖRÜNÜR YAP */
+    transform: translateX(0); /* Olduğu yere geri gel (Ekrana gir) */
 }
 
 /* Linklerin Görünümü */
-.menu-links li {
-    margin-bottom: 15px;
-    text-align: center; /* Linkleri ortala */
-}
-
-.menu-links li:last-child {
-    margin-bottom: 0;
-}
-
 .menu-links a {
-    color: #1abc9c; /* Resimdeki açık yeşil link rengi */
+   
+    color: white;
     text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    display: block; /* Tıklama alanını genişlet */
-    transition: color 0.3s;
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap; /* Yazılar alt satıra düşmesin */
 }
 
+/* Yılbaşı Butonunun (Ağaç) Menü Üstünde Kalması İçin */
+.menu-toggle {
+    z-index: 101; /* Menüden (100) daha yüksek olmalı */
+    position: relative; 
+}
 .menu-links a:hover {
     color: #0b6c32; /* Üzerine gelince sarı olsun */
 }
