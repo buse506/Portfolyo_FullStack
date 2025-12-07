@@ -2,7 +2,7 @@
 
 body {
 
-    background-color: rgb(162, 174, 165);
+    background-color: rgb(21, 3, 37);
     margin: 10px;
 }
 
@@ -49,7 +49,10 @@ h1,h2,p,li  {
 /* Navbar Genel Düzeni */
 .navbar {
     border: 8px solid rgba(255, 255, 255, 0.8);
-    background-color: #2c3e50;
+   box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.6), /* İç parlama */
+        0 0 40px rgba(135, 206, 235, 0.4), /* Dış mavi buz parlaması */
+        0 10px 20px rgba(0,0,0,0.3); /* Altına hafif gölge (derinlik için) */
     padding: 15px 30px; /* Yüksekliği biraz azalttım, çok yer kaplamasın */
     
     /* Konumlandırma Ayarları */
@@ -78,10 +81,9 @@ h1,h2,p,li  {
     transform: scale(1.1); /* %10 büyür */
 }
 
-/* İstersen ağacın içini yeşil yapabiliriz */
 .menu-toggle svg {
-    /* stroke: #2ecc71;  <-- Eğer çizgileri yeşil olsun istersen bunu aç */
-    filter: drop-shadow(0 0 5px #fff); /* Beyaz parlama */
+    stroke: #ffd700; 
+    filter: drop-shadow(0 0 5px #ffd700);
 }
 
 /* Navbar'ın taşmaları gizlemesi lazım ki menü kapalıyken yanda scroll bar çıkmasın */
@@ -99,7 +101,7 @@ h1,h2,p,li  {
     height: 100%;
     width: 100%; /* Tüm navbar'ı kapla */
     
-    background-color: #34495e;
+  
     
     /* İçerik Düzeni */
     display: flex;
@@ -110,13 +112,13 @@ h1,h2,p,li  {
     /* --- İŞTE ÇÖZÜM BURADA --- */
     /* Sağ taraftan butonun genişliği kadar (hatta biraz fazla) boşluk bırakıyoruz */
     /* Böylece son link butonun altına giremiyor */
-    padding-right: 90px; 
+    padding-right: 200px; 
     padding-left: 20px;
     box-sizing: border-box; /* Padding eklediğimiz için taşmayı engeller */
     
     /* Animasyon Ayarları */
     transform: translateX(100%); /* Başlangıçta sağda gizli */
-    transition: transform 0.5s ease-in-out;
+    transition: transform 1s ease-in-out;
     
     /* Diğer Ayarlar */
     list-style: none;
@@ -146,12 +148,12 @@ h1,h2,p,li  {
     position: relative; 
 }
 .menu-links a:hover {
-    color: #0b6c32; /* Üzerine gelince sarı olsun */
+    color: #ffd700; /* Gold */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Altın gibi parlasın */
 }
-a {
-    
-    padding: 10px;
-}
+
+
+
 
 .textandimage{
 
@@ -160,4 +162,12 @@ a {
     align-items: center;       /* Yatayda tam ortala */
     justify-content: center;   /* Dikeyde ortala */
     text-align: center;
+}
+
+
+
+
+    .navbar, .menu-links {
+    background-color: rgba(30, 10, 50, 0.95); /* Lacivert yerine mor tabanlı */
+    border-color: rgba(255, 255,255, 0.8); /* Hafif altın sarısı çerçeve */
 }
