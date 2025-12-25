@@ -19,6 +19,18 @@ app.get('/hakkimda', (req, res) => {
     res.render('hakkimda');
 });
 
+app.get('/yazilarim', (req, res) => {
+    res.render('yazilarim');
+});
+
+app.get('/projelerim', (req, res) => {
+    res.render('projelerim');
+});
+
+app.get('/oyun', (req, res) => {
+    res.render('oyun');
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Sunucu http://localhost:${PORT} adresinde aktif!`);

@@ -1,18 +1,23 @@
-// --- YILBAŞI MENÜSÜ AÇMA/KAPAMA ---
+// script.js
 
 const menuBtn = document.getElementById('christmasMenuBtn');
 const menuLinks = document.getElementById('menuLinks');
 
-// Butona tıklama olayını dinle
-menuBtn.addEventListener('click', () => {
-    // 'active' sınıfını menüye ekle veya çıkar (toggle)
-    menuLinks.classList.toggle('active');
-});
+// Eğer sayfada bu elementler varsa çalıştır (Hata almamak için önemli)
+if (menuBtn && menuLinks) {
+    menuBtn.addEventListener('click', (e) => {
+        // Tıklamanın dışarıya yayılmasını engelle (document click ile çakışmasın)
+        e.stopPropagation(); 
+        menuLinks.classList.toggle('active');
+    });
 
-// (İsteğe bağlı) Menü dışına tıklanınca menüyü kapat
-document.addEventListener('click', (event) => {
-    // Eğer tıklanan yer menü butonu veya menünün kendisi değilse
-    if (!menuBtn.contains(event.target) && !menuLinks.contains(event.target)) {
-        menuLinks.classList.remove('active');
-    }
-});
+    // Menü dışına tıklanınca kapatma mantığı
+    document.addEventListener('click', (event) => {
+        const isClickInsideMenu = menuLinks.contains(event.target);
+        const isClickOnButton = menuBtn.contains(event.target);
+
+        if (!isClickInsideMenu && !isClickOnButton) {
+            menuLinks.classList.remove('active');
+        }
+    });
+}
